@@ -1,210 +1,277 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Kekasihku 💕</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Untuk Kamu ❤️</title>
 
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd6eb 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-        }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("pink.jpeg") no-repeat center center/cover;
+  height: 100vh;
+  color: white;
+  position: relative;
+}
 
-        .container {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
-            max-width: 600px;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
+/* center */
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+/* text */
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
 
-        h1 {
-            color: #ff69b4;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
-        }
+.subtitle {
+  margin-bottom: 25px;
+  font-style: italic;
+}
 
-        .heart {
-            font-size: 3em;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-            margin: 20px 0;
-        }
+/* slider */
+.slider {
+  position: relative;
+  overflow: hidden;
+  width: 80%;
+  max-width: 900px;
+}
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.15); }
-        }
+/* fade pinggir */
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
 
-        .message {
-            font-size: 1.2em;
-            color: #ff1493;
-            margin: 20px 0;
-            line-height: 1.6;
-        }
+.slider::before {
+  left: 0;
+  background: linear-gradient(to right, #ff4d6d, transparent);
+}
 
-        .button {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1em;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-            font-weight: bold;
-        }
+.slider::after {
+  right: 0;
+  background: linear-gradient(to left, #ff4d6d, transparent);
+}
 
-        .button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
-        }
+/* track */
+.slide-track {
+  display: flex;
+  width: calc(300px * 8);
+  animation: scroll 18s linear infinite;
+}
 
-        .stars {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
+/* gambar */
+.slide-track img {
+  width: 300px;
+  height: 180px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 20px;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
 
-        .star {
-            position: absolute;
-            font-size: 20px;
-            animation: twinkle 2s ease-in-out infinite;
-        }
+.slide-track img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.5);
+}
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+/* animasi */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-        .emoji-rain {
-            position: fixed;
-            font-size: 30px;
-            animation: fall 5s linear infinite;
-            pointer-events: none;
-        }
+/* hearts */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-        @keyframes fall {
-            0% { transform: translateY(-100px); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
+.heart {
+  position: absolute;
+  color: pink;
+  font-size: 20px;
+  animation: jatuh linear infinite;
+}
 
-        #surprise {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
-            border-radius: 15px;
-            animation: slideIn 0.5s ease-out;
-        }
+@keyframes jatuh {
+  0% { transform: translateY(-10vh); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+}
 
-        .cute-image {
-            font-size: 5em;
-            margin: 20px 0;
-        }
-    </style>
+.modal-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  width: 70%;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.modal-box img {
+  width: 300px;
+  border-radius: 15px;
+}
+
+.modal-text {
+  max-width: 400px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
+
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    
-    <div class="container">
-        <h1>Hai Sayangkuuu! 🥰</h1>
-        
-        <div class="heart">❤️</div>
-        
-        <div class="message">
-            Kamu tau gak? Kamu itu... <br>
-            <strong>SUPER DUPER IMUT!</strong> 🌸<br>
-            Kayak kucing lucu yang bikin hari-hariku cerah! ✨
-        </div>
 
-        <div class="cute-image">🐱💕🌈</div>
+<div class="hearts"></div>
 
-        <button class="button" onclick="showSurprise()">Klik Aku Dong! 💖</button>
-        <button class="button" onclick="makeItRain()">Hujan Cinta! 🌧️</button>
+<div class="wrapper">
+  <h1>💖 BUAT JLEKKKK 💖</h1>
+  <p class="subtitle">Buat Giovany Yang bntr lagi UTBK 🌊❤️</p>
 
-        <div id="surprise">
-            <h2 style="color: #ff69b4;">Kejutan! 🎉</h2>
-            <p style="color: #ff1493; font-size: 1.1em; margin-top: 10px;">
-                Aku sayang banget sama kamu! 💝<br>
-                Kamu adalah alasan aku tersenyum setiap hari! 😊<br>
-                Makasih udah jadi kekasih paling imut sedunia! 🌍💕
-            </p>
-            <div style="font-size: 3em; margin-top: 15px;">🎈🎊🎁</div>
-        </div>
+  <div class="slider">
+    <div class="slide-track">
+      <img src="gio1.jpeg">
+      <img src="gio2.jpeg">
+      <img src="gio3.jpeg">
+      <img src="gio4.jpeg">
+
+      <!-- duplikat -->
+      <img src="gio1.jpeg">
+      <img src="gio2.jpeg">
+      <img src="gio3.jpeg">
+      <img src="gio4.jpeg">
     </div>
+  </div>
+</div>
 
-    <script>
-        // Buat bintang-bintang
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 30; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.textContent = '✨';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            starsContainer.appendChild(star);
-        }
+<!-- modal -->
+<div id="modal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-box">
+    <img id="modal-img">
+    <div class="modal-text">
+      <h3 id="judul"></h3>
+      <p id="deskripsi"></p>
+    </div>
+  </div>
+</div>
 
-        function showSurprise() {
-            const surprise = document.getElementById('surprise');
-            if (surprise.style.display === 'none' || surprise.style.display === '') {
-                surprise.style.display = 'block';
-            } else {
-                surprise.style.display = 'none';
-            }
-        }
+<!-- audio -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-        function makeItRain() {
-            const emojis = ['💖', '💕', '💗', '💓', '💝', '🌸', '🌺', '🦋', '✨', '⭐'];
-            
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.className = 'emoji-rain';
-                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    emoji.style.left = Math.random() * 100 + '%';
-                    emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    document.body.appendChild(emoji);
-                    
-                    setTimeout(() => emoji.remove(), 5000);
-                }, i * 200);
-            }
-        }
-    </script>
+<script>
+const music = document.getElementById("music");
+
+// autoplay fix
+document.body.addEventListener("click", () => {
+  music.play();
+}, { once: true });
+
+// hearts
+const heartsContainer = document.querySelector(".hearts");
+
+function buatHati() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+  heartsContainer.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(buatHati, 300);
+
+// modal
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const judul = document.getElementById("judul");
+const deskripsi = document.getElementById("deskripsi");
+const closeBtn = document.querySelector(".close");
+
+// DATA FOTO
+const dataFoto = [
+  {
+    src: "gio1.jpeg",
+    judul: "Pertama Kali Ketemu",
+    deskripsi: "Hari itu sederhana, tapi sejak itu semuanya berubah jadi lebih indah."
+  },
+  {
+    src: "gio2.jpeg",
+    judul: "Momen Bahagia",
+    deskripsi: "Ketawa bareng kamu selalu jadi hal favoritku."
+  },
+  {
+    src: "gio3.jpeg",
+    judul: "Kenangan Indah",
+    deskripsi: "Setiap momen sama kamu selalu aku simpan baik-baik."
+  },
+  {
+    src: "gio4.jpeg",
+    judul: "Hari Spesial",
+    deskripsi: "Aku harap kita bisa terus seperti ini, selamanya."
+  }
+];
+
+const images = document.querySelectorAll(".slide-track img");
+
+images.forEach((img, i) => {
+  img.addEventListener("click", () => {
+    const data = dataFoto[i % dataFoto.length];
+
+    modal.style.display = "block";
+    modalImg.src = data.src;
+    judul.innerText = data.judul;
+    deskripsi.innerText = data.deskripsi;
+  });
+});
+
+closeBtn.onclick = () => modal.style.display = "none";
+modal.onclick = () => modal.style.display = "none";
+</script>
+
 </body>
 </html>
